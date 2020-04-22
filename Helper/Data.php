@@ -21,6 +21,16 @@ class Data extends AbstractHelper
     protected $storeManager;
 
     /**
+     * @var ProductMetadataInterface
+     */
+    protected $productMetadataInterface;
+
+    /**
+     * @var DeploymentConfig
+     */
+    protected $deploymentConfig;
+
+    /**
      * @var array
      */
     protected $configKeys = [

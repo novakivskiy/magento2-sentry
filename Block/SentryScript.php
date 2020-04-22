@@ -8,6 +8,11 @@ use Magento\Framework\View\Element\Template;
 class SentryScript extends Template
 {
     /**
+     * @var DataHelper
+     */
+    protected $dataHelper;
+
+    /**
      * SentryScript constructor.
      *
      * @param DataHelper       $dataHelper
@@ -46,5 +51,14 @@ class SentryScript extends Template
     public function getDSN()
     {
         return $this->dataHelper->getDSN();
+    }
+
+    public function toHtml()
+    {
+        if ($this->canUseScriptTag($this->getNameInLayout())) {
+            return '';
+        }
+
+        return parent::toHtml();
     }
 }

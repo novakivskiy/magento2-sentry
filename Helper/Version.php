@@ -4,6 +4,7 @@ namespace JustBetter\Sentry\Helper;
 
 use Magento\Framework\App\DeploymentConfig;
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
 use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Config\ConfigOptionsListConstants;
 use Psr\Log\LoggerInterface;
@@ -40,17 +41,20 @@ class Version extends AbstractHelper
 
     /**
      * @param \Magento\Framework\App\State $appState
-     * @param Version\StorageInterface     $versionStorage
+     * @param \Magento\Framework\App\View\Deployment\Version\StorageInterface    $versionStorage
      * @param DeploymentConfig|null        $deploymentConfig
      */
     public function __construct(
         \Magento\Framework\App\State $appState,
         \Magento\Framework\App\View\Deployment\Version\StorageInterface $versionStorage,
+        Context $context,
         DeploymentConfig $deploymentConfig = null
     ) {
         $this->appState = $appState;
         $this->versionStorage = $versionStorage;
         $this->deploymentConfig = $deploymentConfig ?: ObjectManager::getInstance()->get(DeploymentConfig::class);
+
+        parent::__construct($context);
     }
 
     /**
