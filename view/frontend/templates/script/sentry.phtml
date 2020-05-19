@@ -3,5 +3,10 @@
 /** @var \JustBetter\Sentry\Block\SentryScript $block */
 ?>
 
-<script src="https://browser.sentry-cdn.com/5.15.5/bundle.min.js" integrity="sha384-wF7Jc4ZlWVxe/L8Ji3hOIBeTgo/HwFuaeEfjGmS3EXAG7Y+7Kjjr91gJpJtr+PAT" crossorigin="anonymous"></script>
-<script>Sentry.init({ dsn: '<?= $block->escapeUrl(trim($block->getDSN())) ?>' });</script>
+<script>
+    require([
+        'JustBetter_Sentry/js/lib/5.15.5/bundle.min'
+    ], function () {
+        Sentry.init({ dsn: '<?= $block->escapeUrl(trim($block->getDSN())) ?>' });
+    });
+</script>
